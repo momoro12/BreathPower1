@@ -40,10 +40,11 @@ class ExhalationApp(App):
         self.clear_all_button = Button(text='Очистить все измерения')
         self.clear_all_button.bind(on_press=self.clear_all_measurements)
         self.graph_image = Image()
-        self.stats_label = Label()  # Создание метки для статистических данных
+        self.stats_label = Label()
+        х
         history_layout.add_widget(self.history_scrollview)
         history_layout.add_widget(self.clear_all_button)
-        history_layout.add_widget(self.stats_label)  # Добавление метки в макет
+        history_layout.add_widget(self.stats_label)
         history_layout.add_widget(self.graph_image)
         history_tab.add_widget(history_layout)
 
@@ -52,9 +53,9 @@ class ExhalationApp(App):
         info_scroll_view = ScrollView()
         info_label = Label(text='Здесь будет информация о том, как правильно измерять силу выдоха, '
                                 'влияние различных факторов на показатели и методы их улучшения.',
-                           size_hint_y=None,  # Важно для корректной работы ScrollView
-                           text_size=(tabbed_panel.width + 400, None),  # Ограничение ширины текста
-                           valign='center')  # Вертикальное выравнивание текста
+                           size_hint_y=None,
+                           text_size=(tabbed_panel.width + 400, None),
+                           valign='center')
         info_label.bind(texture_size=info_label.setter('size'))  # Обновление размера метки при изменении текста
         info_scroll_view.add_widget(info_label)
         info_tab.add_widget(info_scroll_view)
@@ -65,7 +66,7 @@ class ExhalationApp(App):
         self.diary_input = TextInput(hint_text='Запишите свои ощущения или изменения в образе жизни', multiline=True)
         save_diary_button = Button(text='Сохранить запись')
         save_diary_button.bind(on_press=self.save_diary_entry)
-        self.diary_display = ScrollView()  # ScrollView для отображения записей
+        self.diary_display = ScrollView()
         self.diary_label = Label(size_hint_y=None,
                                  text_size=(tabbed_panel.width + 200, None),
                                  valign='top')
@@ -137,7 +138,6 @@ class ExhalationApp(App):
 
     def update_stats(self):
         if self.data:
-            # values = [value for _, value in self.data]
             mean = stats.tmean(self.data)
             median = numpy.median(self.data)
             variance = stats.tvar(self.data)
